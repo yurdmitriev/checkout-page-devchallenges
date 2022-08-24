@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="devchallenges.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Checkout page (devchallenges.io)</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Checkout</h1>
+    </div>
+  </header>
+  <div class="container row">
+    <main>
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Contact information</legend>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="email">Email</label>
+              <div class="control-input">
+                <span class="material-icons">email</span>
+                <input type="email" name="email" id="email" placeholder="Enter your email..." required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="phone">Phone</label>
+              <div class="control-input">
+                <span class="material-icons">phone</span>
+                <input type="tel" name="phone" id="phone" placeholder="Enter your phone..." required>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Shipping address</legend>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="fullname">Full name</label>
+              <div class="control-input">
+                <span class="material-icons">account_circle</span>
+                <input type="text" name="fullname" id="fullname" placeholder="Your full name..." required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="address">Address</label>
+              <div class="control-input">
+                <span class="material-icons">home</span>
+                <input type="text" name="address" id="address" autocomplete="shipping street-address"
+                  placeholder="Your address..." required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="city">City</label>
+              <div class="control-input">
+                <span class="material-icons">location_city</span>
+                <input type="text" name="city" id="city" autocomplete="shipping address-level2"
+                  placeholder="Your city..." required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control">
+              <label for="country">Country</label>
+              <div class="control-input">
+                <span class="material-icons">public</span>
+                <select name="country" id="country" required>
+                  <option value="" selected disabled>Your country...</option>
+                  <option value="Ukraine">Ukraine</option>
+                  <option value="Ukraine">Estonia</option>
+                  <option value="Ukraine">Poland</option>
+                  <option value="Ukraine">Romania</option>
+                </select>
+                <span class="material-icons arrow">
+                  expand_more
+                </span>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="postal-code">Postal code</label>
+              <div class="control-input">
+                <span class="material-icons">markunread_mailbox</span>
+                <input type="text" inputmode="numeric" name="postal-code" id="postal-code"
+                  autocomplete="shipping postal-code" placeholder="Your postal code..." required>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="row">
+          <div class="form-control">
+            <div class="control-input">
+              <input type="checkbox" name="save-info" id="save-info">
+              <label for="save-info">Save this information for next time</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="submit">Continue</button>
+        </div>
+      </form>
+    </main>
+    <aside>
+      <ul class="products">
+        <li class="row">
+          <picture><img src="img/photo1.png" alt="Vintage Backbag"></picture>
+          <div class="info">
+            <h3>Vintage Backbag</h3>
+            <div class="prices">
+              <div class="price">$54.99</div>
+              <div class="price-old"><small><s>$94.99</s></small></div>
+            </div>
+            <div class="quantity">
+              <button data-action="-">-</button>
+              <input type="number" min="1" max="100" value="1" readonly>
+              <button data-action="+">+</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="row">
+          <picture><img src="img/photo2.png" alt="Levi Shoes"></picture>
+          <div class="info">
+            <h3>Levi Shoes</h3>
+            <div class="prices">
+              <div class="price">$74.99</div>
+              <div class="price-old"><small><s>$124.99</s></small></div>
+            </div>
+            <div class="quantity">
+              <button data-action="-">-</button>
+              <input type="number" min="1" max="100" value="1" readonly>
+              <button data-action="+">+</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="summary">
+        <li class="row"><span class="title">Shipping</span><span class="value">$19</span></li>
+        <li class="row"><span class="title">Total</span><span class="value">$148.98</span></li>
+      </ul>
+    </aside>
+  </div>
+  <footer>
+    <p>created by <a href="https://github.com/yurdmitriev"><b>yurdmitriev</b></a> - devChallenges.io</p>
+  </footer>
+
+  <script>
+    const form = document.querySelector('main form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (e.currentTarget.checkValidity()) alert('Success');
+      else alert('Failed!');
+    });
+
+    for (const control of document.querySelectorAll('.quantity')) {
+      const input = control.querySelector('input');
+      const negative = control.querySelector('button[data-action="-"]');
+      const positive = control.querySelector('button[data-action="+"]');
+
+      if (negative) negative.addEventListener('click', () => input.stepDown());
+      if (positive) positive.addEventListener('click', () => input.stepUp());
+    }
+  </script>
+</body>
+
+</html>
